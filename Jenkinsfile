@@ -23,6 +23,10 @@
 
 pipeline {
 agent any
+
+options {
+disableconcurrentbuilds()
+}
 environment {
 PROJECT_NAME ="Todoapp"
 UBUNTU_SSH_CRED = credentials('UBUNTU-SSH')
