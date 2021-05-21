@@ -29,8 +29,8 @@ disableConcurrentBuilds()
 }
 environment {
 PROJECT_NAME ="Todoapp"
-UBUNTU_SSH_CRED = credentials('UBUNTU-SSH')
-}
+UB
+triggers { cron('H */4 * * 1-5') }
 
 parameters {
         string(name: 'COMPONENT', defaultValue:" ", description: 'which component')
