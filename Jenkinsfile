@@ -13,4 +13,10 @@ pipeline{
   }
  }
 }
+
+post {
+always {
+echo 'post action'
+}
+}
 }
