@@ -33,10 +33,6 @@ sh "echo ${PROJECT_NAME}"
 }
 }
 
-environment {
-PROJECT_NAME ="Todoapp"
-}
-
 stage ('two')
 {
 environment {
