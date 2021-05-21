@@ -25,7 +25,7 @@ pipeline {
 agent any
 
 options {
-disableconcurrentbuilds()
+disableConcurrentBuilds()
 }
 environment {
 PROJECT_NAME ="Todoapp"
