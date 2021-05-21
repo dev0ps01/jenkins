@@ -32,5 +32,20 @@ steps{
 sh "echo ${PROJECT_NAME}"
 }
 }
+
+environment {
+PROJECT_NAME ="Todoapp"
+}
+
+stage ('two')
+{
+environment {
+PROJECT_NAME ="Todoapp"
+}
+
+steps{
+sh "echo ${PROJECT_NAME}"
+}
+}
 }
 }
