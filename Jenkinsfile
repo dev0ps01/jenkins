@@ -23,7 +23,7 @@
 
 pipeline {
 agent any
-envinorment {
+environment {
 PROJECT_NAME ="Todoapp"
 }
 stages {
