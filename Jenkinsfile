@@ -25,11 +25,13 @@ pipeline {
 agent any
 environment {
 PROJECT_NAME ="Todoapp"
+UBUNTU_SSH_CRED = credentials('UBUNTU-SSH')
 }
 stages {
 stage('one') {
 steps{
 sh "echo ${PROJECT_NAME}"
+sh "env"
 }
 }
 
