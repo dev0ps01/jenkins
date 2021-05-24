@@ -45,7 +45,7 @@ folder('CI-Pipelines') {
 //def count=(component.size()-1)
 //for (i in 0..count) {
 //    def j=component[i]
-pipelineJob('CI-Pipelines/users-ci') {
+  pipelineJob('CI-Pipelines/users-ci') {
     configure { flowdefinition ->
 //            flowdefinition / 'properties' << 'org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty' {
 //                'triggers' {
@@ -73,7 +73,7 @@ pipelineJob('CI-Pipelines/users-ci') {
             'lightweight'(true)
         }
     }
-}
+  }
 //}
 
 //def component = ["cart", "catalogue","user","payment","shipping","frontend"];
@@ -81,7 +81,7 @@ pipelineJob('CI-Pipelines/users-ci') {
 //def count=(component.size()-1)
 //for (i in 0..count) {
 //    def j=component[i]
-pipelineJob('CI-Pipelines/login-ci') {
+ pipelineJob('CI-Pipelines/login-ci') {
     configure { flowdefinition ->
 //            flowdefinition / 'properties' << 'org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty' {
 //                'triggers' {
@@ -109,7 +109,7 @@ pipelineJob('CI-Pipelines/login-ci') {
             'lightweight'(true)
         }
     }
-}
+ }
 //}
 
 
@@ -118,7 +118,7 @@ pipelineJob('CI-Pipelines/login-ci') {
 //def count=(component.size()-1)
 //for (i in 0..count) {
 //    def j=component[i]
-pipelineJob('CI-Pipelines/todo-ci') {
+ pipelineJob('CI-Pipelines/todo-ci') {
     configure { flowdefinition ->
 //            flowdefinition / 'properties' << 'org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty' {
 //                'triggers' {
@@ -146,5 +146,5 @@ pipelineJob('CI-Pipelines/todo-ci') {
             'lightweight'(true)
         }
     }
-}
+ }
 //}
