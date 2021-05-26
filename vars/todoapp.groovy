@@ -66,7 +66,7 @@
                  '''
                 }
             }
-            stage ('Prepare Artifacts') {
+            stage ('Prepare Artifacts - login') {
                 when {
                     environment name: 'APP_TYPE' , value : 'GOLANG'
                 }
