@@ -3,11 +3,11 @@ folder('CI-Pipelines') {
    description('CI Pipelines')
 }
 
-def component = ["users","todo","login","frontend"];
+//def component = ["users","todo","login","frontend"];
 
-def count=(component.size()-1)
-for (i in 0..count) {
-   def j=component[i]
+//def count=(component.size()-1)
+//for (i in 0..count) {
+   //def j=component[i]
     pipelineJob('CI-Pipelines/frontend-ci') {
         configure { flowdefinition ->
 //            flowdefinition / 'properties' << 'org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty' {
@@ -22,7 +22,7 @@ for (i in 0..count) {
                 'scm'(class:'hudson.plugins.git.GitSCM',plugin:'git') {
                     'userRemoteConfigs' {
                         'hudson.plugins.git.UserRemoteConfig' {
-                            'url'('https://github.com/dev0ps01/'+j+'.git')
+                            'url'('https://github.com/dev0ps01/frontend.git')
                            // 'refspec'('\'+refs/tags/*\':\'refs/remotes/origin/tags/*\'')
                         }
                     }
