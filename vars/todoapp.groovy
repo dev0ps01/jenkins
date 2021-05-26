@@ -1,12 +1,17 @@
  def call(Map params = [:] ) {
      def args = [
-        NEXUS : 'some',
+        NEXUS_IP : '172.31.9.137',
      ]
      args << params
     pipeline {
-        agent any
+        agent {
+            label "${args.SLAVE_LABEL}"
+        }
         environment {
             COMPONENT="${args.COMPONENT}"
+            NEXUS_IP = "${args.NEXUS_IP}"
+            PROJECT_NAME = "${args.PROJECT_NAME}"
+            SLAVE_LABEL = "${args.SLAVE.LABEL}"
         }
         stages {
             stage ('Prepare Artifacts') {
