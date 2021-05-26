@@ -1,11 +1,18 @@
-def call() {
+ def call(Map params = [:] ) {
+     def args = [
+        NEXUS : 'some',
+     ]
+     args << params
     pipeline {
         agent any
+        environment {
+            COMPONENT="${args.COMPONENT}"
+        }
         stages {
             stage ('Prepare Artifacts') {
                 steps {
                     sh '''
-
+                   echo ${COMPONENT}
                   zip -r frontend.zip *
                '''
                 }
@@ -21,4 +28,4 @@ def call() {
         }
     }
 
-}
+ }
