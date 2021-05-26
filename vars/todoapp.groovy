@@ -11,7 +11,7 @@
             COMPONENT="${args.COMPONENT}"
             NEXUS_IP = "${args.NEXUS_IP}"
             PROJECT_NAME = "${args.PROJECT_NAME}"
-            SLAVE_LABEL = "${args.SLAVE.LABEL}"
+            SLAVE_LABEL = "${args.SLAVE_LABEL}"
             APP_TYPE    = "${args.APP_TYPE}"
         }
         stages {
@@ -22,9 +22,9 @@
                 }
                 steps {
                     sh '''
-                   echo ${COMPONENT}
-                  zip -r ${COMPONENT}.zip *
-               '''
+                     echo ${COMPONENT}
+                     zip -r ${COMPONENT}.zip *
+                   '''
                 }
             }
             stage('compile code') {
@@ -33,8 +33,8 @@
                 }
                 steps {
                     sh '''
-                    mvn compile
-                  '''
+                      mvn compile
+                    '''
                 }
             }
             stage('make package') {
@@ -43,16 +43,15 @@
                 }
                 steps {
                     sh '''
-
-                     mvn package
-                 '''
+                      mvn package
+                    '''
                 }
             }
             stage ('Prepare Artifacts - JAVA') {
                 steps {
                     sh '''
-                  zip -r ${COMPONENT}.zip *
-               '''
+                      zip -r ${COMPONENT}.zip *
+                    '''
                 }
             }
             stage('go build') {
@@ -102,8 +101,8 @@
                 steps {
                     sh '''
 
-                 curl -f -v -u admin:vamsi --upload-file frontend.zip http://172.31.9.137:8081/repository/frontend/frontend.zip
-                '''
+                      curl -f -v -u admin:vamsi --upload-file frontend.zip http://172.31.9.137:8081/repository/frontend/frontend.zip
+                    '''
                 }
             }
         }
