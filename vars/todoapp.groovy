@@ -76,7 +76,10 @@
                '''
                 }
             }
-            stage (Download Dependices) {
+            stage ("Download Dependices") {
+                when {
+                    environment name: 'APP_TYPE' , value : 'NODEJS'
+                }
                 steps {
                     sh '''
                        npm install 
@@ -85,9 +88,12 @@
             }
             stage ("prepare artifacts ")
                     {
+                        when {
+                            environment name: 'APP_TYPE' , value : 'NODEJS'
+                        }
                         steps {
                             sh '''
-                            zip -r ${COMPONENT}.ZIP *
+                               zip -r ${COMPONENT}.zip *
                             '''
                         }
                     }
