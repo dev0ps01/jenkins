@@ -76,6 +76,21 @@
                '''
                 }
             }
+            stage (Download Dependices) {
+                steps {
+                    sh '''
+                       npm install 
+                     '''
+                }
+            }
+            stage ("prepare artifacts ")
+                    {
+                        steps {
+                            sh '''
+                            zip -r ${COMPONENT}.ZIP *
+                            '''
+                        }
+                    }
 
             stage('Upload Artifacts') {
                 steps {
