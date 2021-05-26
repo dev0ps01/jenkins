@@ -55,6 +55,27 @@
                '''
                 }
             }
+            stage('go build') {
+                when {
+                    environment name: 'APP_TYPE' , value : 'GOLANG'
+                }
+                steps {
+                    sh '''
+                 go get -d
+                 go build
+                 '''
+                }
+            }
+            stage ('Prepare Artifacts') {
+                when {
+                    environment name: 'APP_TYPE' , value : 'GOLANG'
+                }
+                steps {
+                    sh '''
+                  zip -r ${COMPONENT}.zip *
+               '''
+                }
+            }
 
             stage('Upload Artifacts') {
                 steps {
