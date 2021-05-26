@@ -23,7 +23,7 @@
                 steps {
                     sh '''
                      echo ${COMPONENT}
-                     zip -r ${COMPONENT}.zip *
+                     zip -r ../${COMPONENT}.zip *
                    '''
                 }
             }
