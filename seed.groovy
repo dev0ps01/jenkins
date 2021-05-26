@@ -22,7 +22,7 @@ folder('CI-Pipelines') {
                 'scm'(class:'hudson.plugins.git.GitSCM',plugin:'git') {
                     'userRemoteConfigs' {
                         'hudson.plugins.git.UserRemoteConfig' {
-                            'url'('https://github.com/dev0ps01/'+j+'.git')
+                            'url'('https://github.com/dev0ps01/frontend.git')
                            // 'refspec'('\'+refs/tags/*\':\'refs/remotes/origin/tags/*\'')
                         }
                     }
