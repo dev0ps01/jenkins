@@ -12,9 +12,10 @@
             NEXUS_IP = "${args.NEXUS_IP}"
             PROJECT_NAME = "${args.PROJECT_NAME}"
             SLAVE_LABEL = "${args.SLAVE.LABEL}"
+            APP_TYPE    = "${args.APP_TYPE}"
         }
         stages {
-            stage ('Prepare Artifacts') {
+            stage ('Prepare Artifacts - NGINX') {
 
                 when {
                     environment name: 'APP_TYPE' , value : 'NGINX'
@@ -47,7 +48,7 @@
                  '''
                 }
             }
-            stage ('Prepare Artifacts') {
+            stage ('Prepare Artifacts - NODEJS') {
                 steps {
                     sh '''
                   zip -r ${COMPONENT}.zip *
