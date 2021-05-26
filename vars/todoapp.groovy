@@ -15,13 +15,46 @@
         }
         stages {
             stage ('Prepare Artifacts') {
+
+                when {
+                    environment name: 'APP_TYPE' , value : 'NGINX'
+                }
                 steps {
                     sh '''
                    echo ${COMPONENT}
-                  zip -r frontend.zip *
+                  zip -r ${COMPONENT}.zip *
                '''
                 }
             }
+            stage('compile code') {
+                when {
+                    environment name: 'APP_TYPE' , value : 'NODEJS'
+                }
+                steps {
+                    sh '''
+                    mvn compile
+                  '''
+                }
+            }
+            stage('make package') {
+                when {
+                    environment name: 'APP_TYPE' , value : 'NODEJS'
+                }
+                steps {
+                    sh '''
+
+                     mvn package
+                 '''
+                }
+            }
+            stage ('Prepare Artifacts') {
+                steps {
+                    sh '''
+                  zip -r ${COMPONENT}.zip *
+               '''
+                }
+            }
+
             stage('Upload Artifacts') {
                 steps {
                     sh '''
