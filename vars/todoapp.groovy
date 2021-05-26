@@ -29,7 +29,7 @@
             }
             stage('compile code') {
                 when {
-                    environment name: 'APP_TYPE' , value : 'NODEJS'
+                    environment name: 'APP_TYPE' , value : 'JAVA'
                 }
                 steps {
                     sh '''
@@ -39,7 +39,7 @@
             }
             stage('make package') {
                 when {
-                    environment name: 'APP_TYPE' , value : 'NODEJS'
+                    environment name: 'APP_TYPE' , value : 'JAVA'
                 }
                 steps {
                     sh '''
@@ -48,7 +48,7 @@
                  '''
                 }
             }
-            stage ('Prepare Artifacts - NODEJS') {
+            stage ('Prepare Artifacts - JAVA') {
                 steps {
                     sh '''
                   zip -r ${COMPONENT}.zip *
@@ -61,9 +61,9 @@
                 }
                 steps {
                     sh '''
-                 go get -d
-                 go build
-                 '''
+                       go get -d
+                       go build
+                    '''
                 }
             }
             stage ('Prepare Artifacts - login') {
@@ -72,8 +72,8 @@
                 }
                 steps {
                     sh '''
-                  zip -r ${COMPONENT}.zip *
-               '''
+                       zip -r ${COMPONENT}.zip *
+                    '''
                 }
             }
             stage ("Download Dependices") {
@@ -103,7 +103,7 @@
                     sh '''
 
                  curl -f -v -u admin:vamsi --upload-file frontend.zip http://172.31.9.137:8081/repository/frontend/frontend.zip
-              '''
+                '''
                 }
             }
         }
