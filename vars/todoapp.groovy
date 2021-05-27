@@ -20,26 +20,7 @@
         }
         stages {
 
-            stage('compile code') {
-                when {
-                    environment name: 'APP_TYPE' , value : 'JAVA'
-                }
-                steps {
-                    sh '''
-                      mvn compile
-                    '''
-                }
-            }
-            stage('make package') {
-                when {
-                    environment name: 'APP_TYPE' , value : 'JAVA'
-                }
-                steps {
-                    sh '''
-                      mvn package
-                    '''
-                }
-            }
+
             stage('Build code & install dependencies') {
                 steps {
                     script {
