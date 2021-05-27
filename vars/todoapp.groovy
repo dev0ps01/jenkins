@@ -7,6 +7,10 @@
         agent {
             label "${args.SLAVE_LABEL}"
         }
+        triggers {
+            pollSCM('* * * * 1-5')
+        }
+
         environment {
             COMPONENT="${args.COMPONENT}"
             NEXUS_IP = "${args.NEXUS_IP}"
@@ -36,28 +40,14 @@
                     '''
                 }
             }
-
-            stage('go build') {
-                when {
-                    environment name: 'APP_TYPE' , value : 'GOLANG'
-                }
+            stage('Build code & install dependencies') {
                 steps {
-                    sh '''
-                       go get -d
-                       go build
-                    '''
+                    script {
+                        build = new nexus()
+                        build.code_build("${APP_TYPE}",${COMPONENT})
+                    }
                 }
-            }
 
-            stage ("Download Dependices") {
-                when {
-                    environment name: 'APP_TYPE' , value : 'NODEJS'
-                }
-                steps {
-                    sh '''
-                       npm install 
-                     '''
-                }
             }
 
             stage('Prepare Artifacts') {
@@ -69,17 +59,13 @@
 
                         prepare.make_artifacts ("${APP_TYPE}","${COMPONENT}")
                     }
-                    sh '''
-                     ls
-                    '''
                 }
             }
 
             stage('Upload Artifacts') {
                 steps {
                     sh '''
-
-                      curl -f -v -u admin:vamsi --upload-file frontend.zip http://172.31.9.137:8081/repository/frontend/frontend.zip
+                      curl -f -v -u admin:vamsi --upload-file frontend.zip http://${NEXUS_IP}:8081/repository/frontend/frontend.zip
                     '''
                 }
             }
