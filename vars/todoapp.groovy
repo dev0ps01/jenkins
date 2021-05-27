@@ -15,18 +15,7 @@
             APP_TYPE    = "${args.APP_TYPE}"
         }
         stages {
-            stage ('Prepare Artifacts - NGINX') {
 
-                when {
-                    environment name: 'APP_TYPE' , value : 'NGINX'
-                }
-                steps {
-                    sh '''
-                     echo ${COMPONENT}
-                     zip -r ../${COMPONENT}.zip *
-                   '''
-                }
-            }
             stage('compile code') {
                 when {
                     environment name: 'APP_TYPE' , value : 'JAVA'
@@ -47,13 +36,7 @@
                     '''
                 }
             }
-            stage ('Prepare Artifacts - JAVA') {
-                steps {
-                    sh '''
-                      zip -r ${COMPONENT}.zip *
-                    '''
-                }
-            }
+
             stage('go build') {
                 when {
                     environment name: 'APP_TYPE' , value : 'GOLANG'
@@ -65,16 +48,7 @@
                     '''
                 }
             }
-            stage ('Prepare Artifacts - login') {
-                when {
-                    environment name: 'APP_TYPE' , value : 'GOLANG'
-                }
-                steps {
-                    sh '''
-                       zip -r ${COMPONENT}.zip *
-                    '''
-                }
-            }
+
             stage ("Download Dependices") {
                 when {
                     environment name: 'APP_TYPE' , value : 'NODEJS'
@@ -85,17 +59,23 @@
                      '''
                 }
             }
-            stage ("prepare artifacts ")
-                    {
-                        when {
-                            environment name: 'APP_TYPE' , value : 'NODEJS'
-                        }
-                        steps {
-                            sh '''
-                               zip -r ${COMPONENT}.zip *
-                            '''
-                        }
+
+            stage('Prepare Artifacts') {
+                when {
+                    environment name: 'APP_TYPE' , value : 'NGINX'
+                }
+                steps {
+                    script {
+                        prepare = new nexus()
+
+
+                        prepare.make_artifacts ("${APP_TYPE}","${COMPONENT}")
                     }
+                    sh '''
+                     ls
+                    '''
+                }
+            }
 
             stage('Upload Artifacts') {
                 steps {
