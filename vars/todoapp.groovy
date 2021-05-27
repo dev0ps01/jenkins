@@ -25,7 +25,7 @@
                 steps {
                     script {
                         build = new nexus()
-                        build.code_build("${APP_TYPE}",${COMPONENT})
+                        build.code_build("${APP_TYPE}","${COMPONENT}")
                     }
                 }
 
