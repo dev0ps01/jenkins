@@ -19,8 +19,6 @@
             APP_TYPE    = "${args.APP_TYPE}"
         }
         stages {
-
-
             stage('Build code & install dependencies') {
                 steps {
                     script {
@@ -30,14 +28,11 @@
                 }
 
             }
-
             stage('Prepare Artifacts') {
 
                 steps {
                     script {
                         prepare = new nexus()
-
-
                         prepare.make_artifacts ("${APP_TYPE}","${COMPONENT}")
                     }
                 }

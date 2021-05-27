@@ -23,7 +23,7 @@ folder('CI-Pipelines') {
                     'userRemoteConfigs' {
                         'hudson.plugins.git.UserRemoteConfig' {
                             'url'('https://github.com/dev0ps01/frontend.git')
-                           // 'refspec'('\'+refs/tags/*\':\'refs/remotes/origin/tags/*\'')
+                            'refspec'('\'+refs/tags/*\':\'refs/remotes/origin/tags/*\'')
                         }
                     }
                     'branches' {
@@ -60,7 +60,7 @@ folder('CI-Pipelines') {
                 'userRemoteConfigs' {
                     'hudson.plugins.git.UserRemoteConfig' {
                         'url'('https://github.com/dev0ps01/users.git')
-                        // 'refspec'('\'+refs/tags/*\':\'refs/remotes/origin/tags/*\'')
+                         'refspec'('\'+refs/tags/*\':\'refs/remotes/origin/tags/*\'')
                     }
                 }
                 'branches' {
@@ -96,7 +96,7 @@ folder('CI-Pipelines') {
                 'userRemoteConfigs' {
                     'hudson.plugins.git.UserRemoteConfig' {
                         'url'('https://github.com/dev0ps01/login.git')
-                        // 'refspec'('\'+refs/tags/*\':\'refs/remotes/origin/tags/*\'')
+                         'refspec'('\'+refs/tags/*\':\'refs/remotes/origin/tags/*\'')
                     }
                 }
                 'branches' {
@@ -133,7 +133,7 @@ folder('CI-Pipelines') {
                 'userRemoteConfigs' {
                     'hudson.plugins.git.UserRemoteConfig' {
                         'url'('https://github.com/dev0ps01/todo.git')
-                        // 'refspec'('\'+refs/tags/*\':\'refs/remotes/origin/tags/*\'')
+                         'refspec'('\'+refs/tags/*\':\'refs/remotes/origin/tags/*\'')
                     }
                 }
                 'branches' {
