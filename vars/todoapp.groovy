@@ -33,16 +33,18 @@
                 steps {
                     script {
                         prepare = new nexus()
-                        prepare.make_artifacts ("${APP_TYPE}","${COMPONENT}")
+                        prepare.make_artifacts("${APP_TYPE}","${COMPONENT}")
                     }
                 }
             }
 
             stage('Upload Artifacts') {
                 steps {
-                    sh '''
-                      curl -f -v -u admin:vamsi --upload-file frontend.zip http://${NEXUS_IP}:8081/repository/frontend/frontend.zip
-                    '''
+                    script {
+                        prepare = new nexus()
+                        prepare.nexus(COMPONENT)
+                    }
+
                 }
             }
         }
