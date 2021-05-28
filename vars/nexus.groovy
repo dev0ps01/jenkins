@@ -11,7 +11,7 @@ def nexus(COMPONENT) {
      println("abc${get_branch_exec}abc")
      def FILENAME=COMPONENT+'-'+get_branch_exec+'.zip'
     if(APP_TYPE == "NGINX" ) {
-        command = "zip -r ../${FILENAME} *"
+        command = "zip -r ${FILENAME} *"
         def execute_com= sh(returnStdout: true, script: command)
         print execute_com
     }
@@ -53,6 +53,10 @@ def code_build(APP_TYPE,COMPONENT) {
         command = "mvn compile"
         command = "mvn clean package"
         def execute_com = sh(returnStdout: true, script: command)
+        print execute_com
+    } else if(APP_TYPE == "NGINX") {
+        command = "npm install && npm run build"
+        def execute_com=sh(returnStdout: true, script: command)
         print execute_com
     }
 }
