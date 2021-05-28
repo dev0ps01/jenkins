@@ -11,23 +11,23 @@ def nexus(COMPONENT) {
      println("abc${get_branch_exec}abc")
      def FILENAME=COMPONENT+'-'+get_branch_exec+'.zip'
     if(APP_TYPE == "NGINX" ) {
-        command = "zip -r ${FILENAME} *"
+        command = " zip -r ${FILENAME} node_modules dist"
         def execute_com= sh(returnStdout: true, script: command)
         print execute_com
     }
     else if(APP_TYPE == "NODEJS" ) {
-        command = "zip -r ${FILENAME} *"
+        command = "zip -r ${FILENAME} node_modules server.js"
         def execute_com= sh(returnStdout: true, script: command)
         print execute_com
 
     }
     else if(APP_TYPE == "java" ) {
-        command = "zip -r ${FILENAME} *"
+        command =  "cp target/*.jar ${COMPONENT}.jar && zip -r ${FILENAME} ${COMPONENT}.jar"
         def execute_com= sh(returnStdout: true, script: command)
         print execute_com
     }
     else if (APP_TYPE == "GOLANG") {
-        command = "zip -r ${FILENAME} *"
+        command = "zip -r ${FILENAME} login-ci main.go user.go tracing.go"
         def execute_com= sh(returnStdout: true, script: command)
         print execute_com
     }
@@ -38,19 +38,12 @@ def code_build(APP_TYPE,COMPONENT) {
         def execute_com= sh(returnStdout: true, script: command)
         print execute_com
     }
-    else if(APP_TYPE == 'NODEJS') {
-        command = "npm install"
-        def execute_com= sh(returnStdout: true, script: command)
-        print execute_com
-    }
     else if(APP_TYPE == 'GOLANG') {
-        command = "go get -d"
-        command = "go build"
+        command = "go get -d && go build"
         def execute_com = sh(returnStdout: true, script: command)
         print execute_com
     }
     else if(APP_TYPE == 'JAVA') {
-        command = "mvn compile"
         command = "mvn clean package"
         def execute_com = sh(returnStdout: true, script: command)
         print execute_com
