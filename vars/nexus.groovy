@@ -1,4 +1,4 @@
-def nexus(COMPONENT) {
+edef nexus(COMPONENT) {
     get_branch = "env | grep GIT_BRANCH | awk -F / '{print \$NF}' | xargs echo -n"
     def get_branch_exec=sh(returnStdout: true, script: get_branch)
     def FILENAME=COMPONENT+'-'+get_branch_exec+'.zip'
@@ -11,7 +11,7 @@ def nexus(COMPONENT) {
      println("abc${get_branch_exec}abc")
      def FILENAME=COMPONENT+'-'+get_branch_exec+'.zip'
     if(APP_TYPE == "NGINX" ) {
-        command = " zip -r ${FILENAME} node_modules dist"
+        command = " zip -r ${FILENAME} ."
         def execute_com= sh(returnStdout: true, script: command)
         print execute_com
     }
