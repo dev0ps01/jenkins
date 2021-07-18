@@ -3,7 +3,7 @@
    description('CI Pipelines')
  }
 
-def component = ["users","todoapp","login","frontend"];
+def component = ["users","todo","login","frontend"];
 
 def count=(component.size()-1)
  for (i in 0..count) {
