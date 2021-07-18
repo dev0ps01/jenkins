@@ -28,7 +28,8 @@ def count=(component.size()-1)
                     }
                     'branches' {
                         'hudson.plugins.git.BranchSpec' {
-                            'name'('*/main')
+                            //'name'('*/main')
+                            'name'('*/tag/*')
                         }
                     }
                 }
