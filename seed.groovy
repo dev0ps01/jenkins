@@ -1,6 +1,6 @@
- folder('CI-Pipelines') {
-    displayName('CI Pipelines')
-   description('CI Pipelines')
+ folder('ci-Pipelines') {
+    displayName('ci Pipelines')
+   description('ci Pipelines')
  }
 
 def component = ["users","todo","login","frontend"];
