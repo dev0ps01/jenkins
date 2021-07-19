@@ -1,19 +1,19 @@
- folder('ci-Pipelines') {
-    displayName('ci Pipelines')
-   description('ci Pipelines')
- }
+folder('CI-Pipelines') {
+    displayName('CI Pipelines')
+    description('CI Pipelines')
+}
 
-def component = ["users","todo","login","frontend"];
+def component = ["todo", "login","users","frontend"];
 
 def count=(component.size()-1)
- for (i in 0..count) {
-   def j=component[i]
+for (i in 0..count) {
+    def j=component[i]
     pipelineJob("CI-Pipelines/${j}-ci") {
         configure { flowdefinition ->
             flowdefinition / 'properties' << 'org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty' {
-               'triggers' {
-                   'hudson.triggers.SCMTrigger' {
-                        'spec'('* * * * 1-5')
+                'triggers' {
+                    'hudson.triggers.SCMTrigger' {
+                        'spec'('*/2 * * * 1-5')
                         'ignorePostCommitHooks'(false)
                     }
                 }
@@ -22,14 +22,16 @@ def count=(component.size()-1)
                 'scm'(class:'hudson.plugins.git.GitSCM',plugin:'git') {
                     'userRemoteConfigs' {
                         'hudson.plugins.git.UserRemoteConfig' {
-                            'url'('https://github.com/dev0ps01/'+j+'.git')
+                            'url'('https://github.com/Dev0ps01/'+j+'.git')
                             'refspec'('\'+refs/tags/*\':\'refs/remotes/origin/tags/*\'')
+
+
                         }
                     }
                     'branches' {
                         'hudson.plugins.git.BranchSpec' {
                             //'name'('*/main')
-                            'name'('*/tag/*')
+                            'name'('*/tags/*')
                         }
                     }
                 }
@@ -38,6 +40,4 @@ def count=(component.size()-1)
             }
         }
     }
- }
-
-
+}
