@@ -37,7 +37,7 @@ def code_build(APP_TYPE, COMPONENT) {
         def execute_com=sh(returnStdout: true, script: command)
         print execute_com
     } else if(APP_TYPE == "JAVA") {
-        command = "mvn clean package"
+        command = "sudo mvn clean package"
         def execute_com=sh(returnStdout: true, script: command)
         print execute_com
     } else if(APP_TYPE == "GOLANG") {
@@ -45,7 +45,7 @@ def code_build(APP_TYPE, COMPONENT) {
         def execute_com=sh(returnStdout: true, script: command)
         print execute_com
     } else if(APP_TYPE == "NGINX") {
-        command = "sudo npm install && sudo npm run build"
+        command = "npm install && npm run build"
         def execute_com=sh(returnStdout: true, script: command)
         print execute_com
 
